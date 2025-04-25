@@ -8,12 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -145,11 +145,11 @@ var handler = NextAuth({
                                 userDn = "uid=".concat(credentials.username, ",").concat(process.env.LDAP_USER_DN || "ou=people,dc=example,dc=ai");
                                 client = ldap.createClient({
                                     url: ldapUrl,
-                                    timeout: 30000,
-                                    connectTimeout: 30000,
+                                    timeout: 30000, // 30 seconds timeout
+                                    connectTimeout: 30000, // 30 seconds connect timeout
                                     reconnect: {
-                                        initialDelay: 1000,
-                                        maxDelay: 10000,
+                                        initialDelay: 1000, // 1 second initial delay
+                                        maxDelay: 10000, // 10 seconds maximum delay
                                         failAfter: 10 // fail after 10 retries
                                     }
                                 });
@@ -221,9 +221,9 @@ var handler = NextAuth({
     ],
     callbacks: {
         signIn: function (_a) {
-            var user = _a.user, account = _a.account, profile = _a.profile;
-            return __awaiter(this, void 0, void 0, function () {
-                return __generator(this, function (_b) {
+            return __awaiter(this, arguments, void 0, function (_b) {
+                var user = _b.user, account = _b.account, profile = _b.profile;
+                return __generator(this, function (_c) {
                     if ((account === null || account === void 0 ? void 0 : account.provider) === "verify-otp" || (account === null || account === void 0 ? void 0 : account.provider) === "ldap") {
                         console.log("".concat(account.provider, " provider detected; proceeding without profile check."));
                         return [2 /*return*/, true];
@@ -252,9 +252,9 @@ var handler = NextAuth({
             });
         },
         jwt: function (_a) {
-            var token = _a.token, user = _a.user, account = _a.account;
-            return __awaiter(this, void 0, void 0, function () {
-                return __generator(this, function (_b) {
+            return __awaiter(this, arguments, void 0, function (_b) {
+                var token = _b.token, user = _b.user, account = _b.account;
+                return __generator(this, function (_c) {
                     console.log("JWT callback invoked");
                     console.log("Initial token:", token);
                     if (user) {
@@ -272,9 +272,9 @@ var handler = NextAuth({
             });
         },
         session: function (_a) {
-            var session = _a.session, token = _a.token;
-            return __awaiter(this, void 0, void 0, function () {
-                return __generator(this, function (_b) {
+            return __awaiter(this, arguments, void 0, function (_b) {
+                var session = _b.session, token = _b.token;
+                return __generator(this, function (_c) {
                     console.log("Session callback invoked");
                     console.log("Token in session callback:", token);
                     if (token && session.user) {

@@ -9,12 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
+        while (g && (g = 0, op[0] && (_ = 0)), _) try {
             if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
             if (y = 0, t) op = [op[0] & 2, t.value];
             switch (op[0]) {
@@ -228,7 +228,7 @@ export default function Home() {
             React.createElement("div", { className: "absolute top-1/2 right-1/3 w-40 h-40 bg-[var(--primary)]/20 rounded-full blur-3xl -z-10 animate-float-blob opacity-30", style: { animationDelay: "2s" } })),
         React.createElement(NavBar, { logoUrl: navConfigData.logoUrl, navItems: navConfigData.navigation, button: {
                 label: "Login",
-                onClick: handleLogout
+                href: "/login"
             }, onNavigate: handleNavigate, appName: "" }),
         React.createElement("section", { id: "hero", ref: heroRef, className: "min-h-screen pt-32 pb-20 flex items-center justify-center relative overflow-hidden" },
             React.createElement("div", { className: "container mx-auto px-4 z-10" },
