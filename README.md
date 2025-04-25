@@ -187,13 +187,18 @@ LINKEDIN_CLIENT_ID=your-linkedin-client-id
 LINKEDIN_CLIENT_SECRET=your-linkedin-client-secret
 
 # Email (for OTP)
-EMAIL_SERVER=smtp://username:password@smtp.example.com:587
-EMAIL_FROM=noreply@example.com
+GMAIL_USER=noreply@example.com
+GMAIL_APP_PASSWORD=smtp://username:password@smtp.example.com:587
 
 # LDAP Configuration
 LDAP_URI=ldap://ldap.example.com
 LDAP_USER_DN=ou=people,dc=example,dc=com
-LDAP_EMAIL_DOMAIN=example.com
+```
+
+> **Note**: For domain based authentication you need to create a .`env.emails`, with a `ALLOWED_EMAILS` var and each individual email should be comma seperated and regex is valid, below is an example.
+
+```
+ALLOWED_EMAILS=@aganitha\.ai$,@example\.com$,@mockinbox\.com$,@gmail\.com$
 ```
 
 ## Advanced Usage
