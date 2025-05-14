@@ -10,7 +10,8 @@ async function installDependencies() {
       'jose',
       '@aganitha/nav-bar@latest',
       'lucide-react',
-      '@aganitha/authentication-component'
+      'ldapjs'
+
     ];
 
     for (const dep of dependencies) {

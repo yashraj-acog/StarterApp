@@ -40,6 +40,7 @@ import GithubProvider from "next-auth/providers/github";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { dbGet, dbRun } from "../../../../utils/db";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 var ldap = require("ldapjs");
 var handler = NextAuth({
     providers: [
@@ -240,17 +241,18 @@ var handler = NextAuth({
                     }
                     // Add provider-specific profile data
                     if (account.provider === 'github') {
-                        //@ts-expect-error
+                        // @ts-expect-error: Adding GitHub URL to user object
                         user.githubUrl = profile.html_url;
                     }
                     if (account.provider === 'linkedin') {
-                        //@ts-expect-error
+                        // @ts-expect-error: Adding LinkedIn URL to user object
                         user.linkedinUrl = profile.publicProfileUrl;
                     }
                     return [2 /*return*/, true];
                 });
             });
         },
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         jwt: function (_a) {
             return __awaiter(this, arguments, void 0, function (_b) {
                 var token = _b.token, user = _b.user, account = _b.account;
@@ -281,11 +283,11 @@ var handler = NextAuth({
                         session.user.id = token.userId;
                         // Add provider URLs to session if available
                         if (token.githubUrl) {
-                            //@ts-expect-error
+                            //@ts-expect-error: expected error 
                             session.user.githubUrl = token.githubUrl;
                         }
                         if (token.linkedinUrl) {
-                            //@ts-expect-error
+                            //@ts-expect-error:  expected error
                             session.user.linkedinUrl = token.linkedinUrl;
                         }
                     }

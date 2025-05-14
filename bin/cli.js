@@ -101,20 +101,6 @@ async function main() {
         process.exit(1);
       }
 
-      // Step 2.2: Ask about installing ldapjs
-      console.log('\x1b[36m%s\x1b[0m', 'Do you want to install LDAP authentication support?');
-      const ldapAnswer = await askQuestion('Install LDAP support? (Y/n)', 'y');
-      const installLdap = (ldapAnswer === 'y' || ldapAnswer === 'yes');
-      
-      if (installLdap) {
-        console.log('\x1b[36m%s\x1b[0m', 'Installing LDAP dependencies...');
-        const ldapInstalled = await installPackage('ldapjs');
-        if (!ldapInstalled) {
-          console.error('\x1b[33mWarning: Failed to install ldapjs, but continuing with setup\x1b[0m');
-        } else {
-          console.log('\x1b[32m✓ LDAP dependencies installed successfully!\x1b[0m');
-        }
-      }
 
       // Step 2.3: Set up auth files and templates
       const authSetup = await setupAuth();

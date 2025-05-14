@@ -4,6 +4,7 @@ import GithubProvider from "next-auth/providers/github";
 import LinkedInProvider, { LinkedInProfile } from "next-auth/providers/linkedin";
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { dbGet, dbRun } from "../../../../utils/db";
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const ldap = require("ldapjs")
 
 // Define interfaces for database query results
@@ -228,18 +229,20 @@ const handler = NextAuth({
 
       // Add provider-specific profile data
       if (account.provider === 'github') {
-        //@ts-expect-error
+        // @ts-expect-error: Adding GitHub URL to user object
         user.githubUrl = profile.html_url;
       }
 
       if (account.provider === 'linkedin') {
-        //@ts-expect-error
+        // @ts-expect-error: Adding LinkedIn URL to user object
         user.linkedinUrl = profile.publicProfileUrl;
       }
 
       return true;
     },
-    async jwt({ token, user, account }) {
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    async jwt({ token, user,account }) {
       console.log("JWT callback invoked");
       console.log("Initial token:", token);
       if (user) {
@@ -262,11 +265,11 @@ const handler = NextAuth({
         session.user.id = token.userId as string;
         // Add provider URLs to session if available
         if (token.githubUrl) {
-          //@ts-expect-error
+          //@ts-expect-error: expected error 
           session.user.githubUrl = token.githubUrl;
         }
         if (token.linkedinUrl) {
-          //@ts-expect-error
+          //@ts-expect-error:  expected error
           session.user.linkedinUrl = token.linkedinUrl;
         }
       }

@@ -1,7 +1,6 @@
 
 "use client";
 import { NavBar } from "@aganitha/nav-bar";
-import {SessionProvider, useSession, signOut} from 'next-auth/react';
 import { useRef, useState, useEffect } from "react";
 import {
   ArrowRight,
@@ -23,10 +22,7 @@ import React from "react";
 
 
 
-const handleLogout = async() =>
-{
-  await signOut({callbackUrl:'/logout'});
-};
+
 // Hardcoded nav config data
 const navConfigData = {
   appName: "Aganitha",
@@ -40,14 +36,7 @@ const navConfigData = {
   ],
 };
 
-// Utility function to simulate getNavConfig
-const getNavConfig = (data: typeof navConfigData) => {
-  return {
-    appName: data.appName,
-    logoUrl: data.logoUrl,
-    navigation: data.navigation,
-  };
-};
+
 
 // Custom Button Component
 const Button = ({
